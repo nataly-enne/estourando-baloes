@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+	<head>
+		<script> src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"</script>
+
+		<meta charset="UTF-8">
+
+		<title>Estourando balões</title>
+
+	</head>
+
+	<body>
+		<div style="float:left; width:auto; height:500px; background: #FFF; border: solid 1px #A2A2A2">
+			<table border="1">
+				<tr>
+					<td>
+						<img src="imagens/balao_azul_grande.png" />
+					</td>
+					<td id="contadorBaloes">
+						10
+					</td>
+				</tr>
+			</table>
+
+			<br />
+			<table border="1">
+				<tr>
+					<td>
+						<img src="imagens/balao_azul_grande_estourado.png" />
+					</td>
+					<td id="contadorBaloesEstourados">
+						10
+					</td>
+				</tr>
+			</table>
+
+			<br/>
+			<table border="1" style="width: 140px; height: 132px;">
+				<tr>
+					<td style="background: url('imagens/cronometro.png')">		
+						<p id="cronometro" style="text-align: center"></p>				
+					</td>
+				</tr>
+			</table>
+			<br/>
+			<table border="1">
+				<tr>
+					<td>
+						<img src="imagens/iniciar.png" onclick="iniciar()"/>
+					</td>
+				</tr>
+			</table>
+
+		</div>
+
+		<div id="cenario" style="float: left; width: 600px; height: 500px; background: url('imagens/cenario.png'); background-position: bottom;"></div>
+		<script>
+			
+			function iniciar(){
+					var cont = 0;
+					for (var i = 0; i < 8; i++) {
+						for (var j = 0; j < 24; j++) {				
+							var img = document.createElement("img");
+							img.src = "imagens/balao_azul_pequeno.png";
+							img.id = cont;
+							img.onclick=function(){
+								estourar(this);
+							};
+							cont++;
+							document.getElementById("cenario").appendChild(img);							
+						}
+					}
+				
+				var imgObj = { img : 'imagens/balao_azul_pequeno.png', alt : 'alternative text' };
+					$(document).ready(
+						function() {
+  						$('.img').attr('src', imgObj.img);
+						});
+			
+				$(document).ready(function() {
+					var url = location.href;
+					if(url.indexOf("?1")!=-1){
+					$("cronometro").text("120");
+					}
+				});	
+			}
+
+			function estourar(b){
+				document.getElementById(b.id).src = "imagens/balao_azul_pequeno_estourado.png";
+			}
+			
+		</script>
+	</body>
+	
+</html>
